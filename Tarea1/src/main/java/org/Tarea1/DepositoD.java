@@ -1,19 +1,11 @@
 package org.Tarea1;
-import java.util.ArrayList;
 
-public class DepositoD{
-    private ArrayList<Dulce> lista;
-    public DepositoD(){
-        this.lista = new ArrayList<Dulce>();
+public class DepositoD extends Deposito<Dulce> {
+    public void addDulce(Dulce d) {
+        super.addElemento(d);
     }
-    public void addDulce(Dulce b){
-        lista.add(d);
-    }
-    public Dulce getDulce(){
-        if(!(lista.size()>0)){
-            return null;
-        } else {
-            return lista.remove(0);
-        }
+
+    public Dulce getDulce() {
+        return super.getElemento();
     }
 }

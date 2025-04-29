@@ -1,13 +1,15 @@
 package org.Tarea1;
 
 public class Expendedor{
-    private Deposito coca;
-    private Deposito sprite;
+    private DepositoP coca;
+    private DepositoP oreo;
+    private DepositoP fanta;
+    private DepositoP sprite;
     private DepositoM monVu;
     private int precio;
     public Expendedor(int numBebidas, int precioBebidas){
-        this.coca = new Deposito();
-        this.sprite = new Deposito();
+        this.coca = new DepositoB();
+        this.sprite = new DepositoB();
         this.monVu = new DepositoM();
         this.precio = precioBebidas;
         for (int i = 100; i < numBebidas+100; i++) {

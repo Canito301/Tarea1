@@ -1,16 +1,18 @@
 package org.Tarea1;
 import java.util.ArrayList;
+public class Deposito<T> {
+    private ArrayList<T> lista;
 
-public class Deposito{
-    private ArrayList<Bebida> lista;
-    public Deposito(){
-        this.lista = new ArrayList<Bebida>();
+    public Deposito() {
+        this.lista = new ArrayList<>();
     }
-    public void addBebida(Bebida b){
-        lista.add(b);
+
+    public void addElemento(T elemento) {
+        lista.add(elemento);
     }
-    public Bebida getBebida(){
-        if(!(lista.size()>0)){
+
+    public T getElemento() {
+        if (lista.isEmpty()) {
             return null;
         } else {
             return lista.remove(0);
