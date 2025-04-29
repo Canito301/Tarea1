@@ -1,0 +1,10 @@
+package org.Tarea1;
+
+public class Moneda100 extends Moneda{
+    public Moneda100(){
+        super();
+    }
+    public int getValor(){
+        return 100;
+    }
+}
