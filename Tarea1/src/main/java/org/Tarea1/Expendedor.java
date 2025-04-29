@@ -1,19 +1,14 @@
 package org.Tarea1;
 
 public class Expendedor{
-    public static final int COCA = 1;
-    public static final int COCA = 1;
-    public static final int COCA = 1;
-    public static final int COCA = 1;
-    public static final int COCA = 1;
-    private Deposito coca;
-    private Deposito snickers;
-    private Deposito super8;
-    private Deposito fanta;
-    private Deposito sprite;
-    private Deposito monVu;
+    private DepositoB coca;
+    private DepositoD snickers;
+    private DepositoD super8;
+    private DepositoB fanta;
+    private DepositoB sprite;
+    private DepositoM monVu;
     private int precio;
-    public Expendedor(int numBebidas, int precioBebidas){
+    public Expendedor(int numProductos){
 
         this.coca = new DepositoB();
         this.sprite = new DepositoB();
@@ -24,16 +19,17 @@ public class Expendedor{
         this.super8 = new DepositoD();
         this.snickers = new DepositoD();
 
-        this.precio = precioBebidas;
-        for (int i = 100; i < numBebidas+100; i++) {
+        for (int i = 100; i < numProductos+100; i++) {
             Bebida b = new CocaCola(i);
             coca.addBebida(b);
             Bebida a = new Sprite(i+100);
             sprite.addBebida(a);
             Bebida c = new Fanta(i+200);
             fanta.addBebida(c);
-
-
+            Dulce d = new Snickers(i+300);
+            snickers.addDulce(d);
+            Dulce e = new Super8(i+400);
+            super8.addDulce(e);
 
         }
     }
@@ -46,34 +42,50 @@ public class Expendedor{
             suma += 100;
         }
     }
-    public Bebida comprarBebida(Moneda m, int tipo) {
-        Bebida bebida = null;
+    public Producto comprarProducto(Moneda m, int tipo) throws PagoInsuficienteException, NoHayProductoException, PagoIncorrectoException {
+        Producto producto = null;
+        int precioProducto = 0;
         if (m == null) {
-            return null;
+            throw new PagoIncorrectoException();
         }
-        if (m.getValor() < precio) {
+        if (m.getValor() < precioProducto) {
             monVu.addMoneda(m);
-            return null;
+            throw new NoHayProductoException();
         }
+        switch (tipo) {
+            case 1:
+                producto = coca.getBebida();
+                precio = ValorProductos.COCACOLA_PRECIO.getPrecio();
+                break;
+            case 2:
+                producto = sprite.getBebida();
+                precio = ValorProductos.SPRITE_PRECIO.getPrecio();
+                break;
+            case 3:
+                producto = fanta.getBebida();
+                precio = ValorProductos.FANTA_PRECIO.getPrecio();
+                break;
+            case 4:
+                producto = snickers.getDulce();
+                precio = ValorProductos.SNIKERS_PRECIO.getPrecio();
+                break;
+            case 5:
+                producto = super8.getDulce();
+                precio = ValorProductos.SUPER8_PRECIO.getPrecio();
+                break;
+            default:
+                monVu.addMoneda(m);
+                throw new NoHayProductoException();
 
-        if (tipo == COCA) {
-            bebida = coca.getBebida();
-        } else if (tipo == SPRITE) {
-            bebida = sprite.getBebida();
-        } else if (tipo == ){
-
-        } else{
-            monVu.addMoneda(m);
-            return null;
         }
-        if (bebida == null) {
+        if (producto == null) {
             monVu.addMoneda(m);
-            return null;
+            throw new NoHayProductoException();
         }
-        if (m.getValor() > precio) {
+        if (m.getValor() > precioProducto) {
             actualizar(m);
         }
-        return bebida;
+        return producto;
     }
     public Moneda getVuelto(){
         return monVu.getMoneda();
