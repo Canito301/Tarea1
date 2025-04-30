@@ -5,8 +5,8 @@ public class Main {
         Expendedor exp = new Expendedor(6);
         Moneda m = null;
         Comprador c=null;
-        m = new Moneda1500();
-        c = new Comprador(m,1,exp);
+        m = new Moneda1000();
+        c = new Comprador(m,2,exp);
         System.out.println(c.queBebiste()+", " +c.cuantoVuelto());
 
     }

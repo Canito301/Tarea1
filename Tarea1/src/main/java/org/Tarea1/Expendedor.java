@@ -44,6 +44,7 @@ public class Expendedor{
     }
     public Producto comprarProducto(Moneda m, int tipo) throws PagoInsuficienteException, NoHayProductoException, PagoIncorrectoException {
         Producto producto = null;
+        Productos elemento = Productos.obtenerProducto(tipo);
         int precioProducto = 0;
         if (m == null) {
             throw new PagoIncorrectoException();
@@ -52,26 +53,26 @@ public class Expendedor{
             monVu.addMoneda(m);
             throw new NoHayProductoException();
         }
-        switch (tipo) {
-            case 1:
+        switch (elemento) {
+            case COCACOLA:
                 producto = coca.getBebida();
-                precio = ValorProductos.COCACOLA_PRECIO.getPrecio();
+                precio = Productos.COCACOLA.getPrecio();
                 break;
-            case 2:
+            case SPRITE:
                 producto = sprite.getBebida();
-                precio = ValorProductos.SPRITE_PRECIO.getPrecio();
+                precio = Productos.SPRITE.getPrecio();
                 break;
-            case 3:
+            case FANTA:
                 producto = fanta.getBebida();
-                precio = ValorProductos.FANTA_PRECIO.getPrecio();
+                precio = Productos.FANTA.getPrecio();
                 break;
-            case 4:
+            case SNICKERS:
                 producto = snickers.getDulce();
-                precio = ValorProductos.SNIKERS_PRECIO.getPrecio();
+                precio = Productos.SNICKERS.getPrecio();
                 break;
-            case 5:
+            case SUPER8:
                 producto = super8.getDulce();
-                precio = ValorProductos.SUPER8_PRECIO.getPrecio();
+                precio = Productos.SUPER8.getPrecio();
                 break;
             default:
                 monVu.addMoneda(m);
