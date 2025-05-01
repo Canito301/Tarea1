@@ -42,16 +42,17 @@ public class Expendedor{
             suma += 100;
         }
     }
+
+
     public Producto comprarProducto(Moneda m, int tipo) throws PagoInsuficienteException, NoHayProductoException, PagoIncorrectoException {
         Producto producto = null;
         Productos elemento = Productos.obtenerProducto(tipo);
-        int precioProducto = 0;
         if (m == null) {
             throw new PagoIncorrectoException();
         }
-        if (m.getValor() < precioProducto) {
+        if (m.getValor() < elemento.getPrecio()) {
             monVu.addMoneda(m);
-            throw new NoHayProductoException();
+            throw new PagoInsuficienteException();
         }
         switch (elemento) {
             case COCACOLA:
@@ -63,8 +64,8 @@ public class Expendedor{
                 precio = Productos.SPRITE.getPrecio();
                 break;
             case FANTA:
-                producto = fanta.getBebida();
                 precio = Productos.FANTA.getPrecio();
+                producto = fanta.getBebida();
                 break;
             case SNICKERS:
                 producto = snickers.getDulce();
@@ -83,7 +84,7 @@ public class Expendedor{
             monVu.addMoneda(m);
             throw new NoHayProductoException();
         }
-        if (m.getValor() > precioProducto) {
+        if (m.getValor() >= precio) {
             actualizar(m);
         }
         return producto;

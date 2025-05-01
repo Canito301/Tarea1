@@ -2,7 +2,6 @@ package org.Tarea1;
 
 public class PagoIncorrectoException extends Exception{
     public PagoIncorrectoException(){
-        super();
-        System.out.println("Pago incorrecto");
+        super("Pago incorrecto (no se ingresó moneda)");
     }
 }

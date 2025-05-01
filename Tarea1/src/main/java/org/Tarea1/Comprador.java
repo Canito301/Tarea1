@@ -3,18 +3,14 @@ package org.Tarea1;
 public class Comprador{
     private String sonido;
     private int vuelto;
-    public Comprador(Moneda m, int cual, Expendedor exp){
+    public Comprador(Moneda m, int cual, Expendedor exp) throws PagoInsuficienteException, NoHayProductoException, PagoIncorrectoException {
         vuelto = 0;
         Producto aux2 = null;
-        try {
-            aux2 = exp.comprarProducto(m, cual);
-        } catch (PagoInsuficienteException e) {
-            throw new RuntimeException(e);
-        } catch (NoHayProductoException e) {
-            throw new RuntimeException(e);
-        } catch (PagoIncorrectoException e) {
-            throw new RuntimeException(e);
-        }
+        do {
+            exp.getVuelto();
+        } while (exp.getVuelto() != null);
+        aux2 = exp.comprarProducto(m, cual);
+
         Moneda auxM = m;
         if (auxM == null){
             aux2 = null;
@@ -35,6 +31,10 @@ public class Comprador{
                 break;
             } else {
                 vuelto += aux.getValor();
+                if(aux2 == null){
+                    vuelto = aux.getValor();
+                    break;
+                }
             }
 
         }
