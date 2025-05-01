@@ -1,12 +1,12 @@
 package org.Tarea1;
 
 public class Expendedor{
-    private DepositoB coca;
-    private DepositoD snickers;
-    private DepositoD super8;
-    private DepositoB fanta;
-    private DepositoB sprite;
-    private DepositoM monVu;
+    private Deposito<Bebida> coca;
+    private Deposito<Dulce> snickers;
+    private Deposito<Dulce> super8;
+    private Deposito<Bebida> fanta;
+    private Deposito<Bebida> sprite;
+    private Deposito<Moneda> monVu;
     private int precio;
     public Expendedor(int numProductos){
 
@@ -21,15 +21,15 @@ public class Expendedor{
 
         for (int i = 100; i < numProductos+100; i++) {
             Bebida b = new CocaCola(i);
-            coca.addBebida(b);
+            coca.addProducto(b);
             Bebida a = new Sprite(i+100);
-            sprite.addBebida(a);
+            sprite.addProducto(a);
             Bebida c = new Fanta(i+200);
-            fanta.addBebida(c);
+            fanta.addProducto(c);
             Dulce d = new Snickers(i+300);
-            snickers.addDulce(d);
+            snickers.addProducto(d);
             Dulce e = new Super8(i+400);
-            super8.addDulce(e);
+            super8.addProducto(e);
 
         }
     }
@@ -38,7 +38,7 @@ public class Expendedor{
         int suma = 0;
         while (suma < valor){
             Moneda monedan = new Moneda100();
-            monVu.addMoneda(monedan);
+            monVu.addProducto(monedan);
             suma += 100;
         }
     }
@@ -47,41 +47,42 @@ public class Expendedor{
     public Producto comprarProducto(Moneda m, int tipo) throws PagoInsuficienteException, NoHayProductoException, PagoIncorrectoException {
         Producto producto = null;
         Productos elemento = Productos.obtenerProducto(tipo);
+
         if (m == null) {
             throw new PagoIncorrectoException();
         }
         if (m.getValor() < elemento.getPrecio()) {
-            monVu.addMoneda(m);
+            monVu.addProducto(m);
             throw new PagoInsuficienteException();
         }
         switch (elemento) {
             case COCACOLA:
-                producto = coca.getBebida();
+                producto = coca.getProducto();
                 precio = Productos.COCACOLA.getPrecio();
                 break;
             case SPRITE:
-                producto = sprite.getBebida();
+                producto = sprite.getProducto();
                 precio = Productos.SPRITE.getPrecio();
                 break;
             case FANTA:
                 precio = Productos.FANTA.getPrecio();
-                producto = fanta.getBebida();
+                producto = fanta.getProducto();
                 break;
             case SNICKERS:
-                producto = snickers.getDulce();
+                producto = snickers.getProducto();
                 precio = Productos.SNICKERS.getPrecio();
                 break;
             case SUPER8:
-                producto = super8.getDulce();
+                producto = super8.getProducto();
                 precio = Productos.SUPER8.getPrecio();
                 break;
             default:
-                monVu.addMoneda(m);
+                monVu.addProducto(m);
                 throw new NoHayProductoException();
 
         }
         if (producto == null) {
-            monVu.addMoneda(m);
+            monVu.addProducto(m);
             throw new NoHayProductoException();
         }
         if (m.getValor() >= precio) {
@@ -90,6 +91,6 @@ public class Expendedor{
         return producto;
     }
     public Moneda getVuelto(){
-        return monVu.getMoneda();
+        return monVu.getProducto();
     }
 }
