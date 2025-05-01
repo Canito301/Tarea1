@@ -62,10 +62,10 @@ public class MainInteractivo {
 import javax.swing.*;
 import java.awt.*;
 
-public class VentanaExpendedora extends JFrame {
+public class MainInteractivo2 extends JFrame {
     private Expendedor expendedor;
 
-    public VentanaExpendedora() {
+    public MainInteractivo2() {
         setTitle("Máquina Expendedora");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
@@ -102,17 +102,22 @@ public class VentanaExpendedora extends JFrame {
         boton.setToolTipText(nombre);
 
         boton.addActionListener(e -> {
-            String[] opciones = {"100", "500", "1000"};
-            String seleccion = (String) JOptionPane.showInputDialog(this,
-                    "Ingrese moneda:", "Pago",
-                    JOptionPane.PLAIN_MESSAGE, null, opciones, "100");
+            String input = JOptionPane.showInputDialog(this,
+                    "Ingresa el valor de la moneda (100, 500, 1000):");
 
-            Moneda moneda = switch (seleccion) {
-                case "100" -> new Moneda100();
-                case "500" -> new Moneda500();
-                case "1000" -> new Moneda1000();
-                default -> null;
-            };
+            Moneda moneda;
+
+            try {
+                int valor = Integer.parseInt(input);
+                moneda = switch (valor) {
+                    case 100 -> new Moneda100();
+                    case 500 -> new Moneda500();
+                    case 1000 -> new Moneda1000();
+                    default -> null; // Si es número no válido
+                };
+            } catch (Exception ex) {
+                moneda = null; // Si es null, vacío o texto no numérico
+            }
 
             try {
                 Comprador comprador = new Comprador(moneda, idProducto, expendedor);
@@ -150,8 +155,11 @@ public class VentanaExpendedora extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(VentanaExpendedora::new);
+        SwingUtilities.invokeLater(MainInteractivo2::new);
     }
 }
+
+
+
 
 
