@@ -6,7 +6,6 @@ package org.Tarea1;
  * los dulces, incluyendo el método abstracto {@code comer()}
  * <p>
  * Cada dulce tiene un número de serie único dado al constructor.
- * <p>
  * @author Leonardo Guerrero
  */
 public abstract class Dulce extends Producto{

@@ -28,7 +28,7 @@ public abstract class Moneda implements Comparable<Moneda>{
      * cero si son iguales,
      * o un número positivo si la moneda es mayor a otraMoneda.
      */
-
+    @Override
     public int compareTo(Moneda otraMoneda) {
         return Integer.compare(this.getValor(), otraMoneda.getValor());
     }

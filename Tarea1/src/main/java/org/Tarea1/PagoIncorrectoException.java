@@ -10,6 +10,10 @@ package org.Tarea1;
  */
 
 public class PagoIncorrectoException extends Exception{
+
+    /**
+     * Crea una nueva instancia de {@code PagoIncorrectoException} con un mensaje específico.
+     */
     public PagoIncorrectoException(){
         super("Pago incorrecto (no se ingresó moneda o moneda no válida)");
     }

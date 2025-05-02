@@ -10,6 +10,10 @@ package org.Tarea1;
  */
 
 public class NoHayProductoException extends Exception{
+
+    /**
+     * Crea una nueva instancia de {@code NoHayProductoException} con un mensaje específico.
+     */
     public NoHayProductoException(){
         super("No hay producto");
     }

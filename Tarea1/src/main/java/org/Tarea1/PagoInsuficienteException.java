@@ -6,11 +6,15 @@ package org.Tarea1;
  * Esta excepción se lanzará cuando se intente acceder o
  * manipular un producto cuando una moneda válida no alcanza para comprarlo.
  * </p>
- * @author Leonardo Guerrero
+ * @author Francisco Fuentealba, Leonardo Guerrero.
  */
 
 public class PagoInsuficienteException extends Exception{
-    PagoInsuficienteException(){
+
+    /**
+     * Crea una nueva instancia de {@code PagoInsuficienteException} con un mensaje específico.
+     */
+    public PagoInsuficienteException(){
         super("Pago insuficiente");
     }
 }

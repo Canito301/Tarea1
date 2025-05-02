@@ -9,7 +9,6 @@ package org.Tarea1;
  * <p>
  * También permite obtener un producto a partir de su código con el método {@link #obtenerProducto(int)}.
  * @author Francisco Fuentealba
- * <p>
  */
 
 public enum Productos {

@@ -9,6 +9,8 @@ package org.Tarea1;
  * @author Leonardo Guerrero
  */
 public class DepositoM extends Deposito<Moneda> {
-
+    /**
+     *Constructor por defecto.*/
+    public DepositoM(){}
 
 }

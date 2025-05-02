@@ -7,8 +7,6 @@ import java.util.ArrayList;
  * Utiliza una lista interna para almacenar objetos del tipo genérico {@code T}.
  * <p>
  * Permite agregar productos y retirar el primero en orden de llegada (FIFO).
- * <p>
- *
  * @param <T> el tipo de objeto que almacenará el depósito.
  *
  * @author Leonardo Guerrero

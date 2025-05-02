@@ -9,4 +9,7 @@ package org.Tarea1;
  * @author Leonardo Guerrero
  */
 public class DepositoB extends Deposito<Bebida> {
+    /**
+     *Constructor por defecto.*/
+    public DepositoB(){}
 }
