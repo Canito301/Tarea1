@@ -62,10 +62,14 @@ public class MainInteractivo {
 import javax.swing.*;
 import java.awt.*;
 
-public class MainInteractivo2 extends JFrame {
+public class MainInteractivo extends JFrame {
+    /**
+     *  Variable que ejecutará los métodos de expendedor.
+     *
+     */
     private Expendedor expendedor;
 
-    public MainInteractivo2() {
+    public MainInteractivo() {
         setTitle("Máquina Expendedora");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
@@ -113,10 +117,10 @@ public class MainInteractivo2 extends JFrame {
                     case 100 -> new Moneda100();
                     case 500 -> new Moneda500();
                     case 1000 -> new Moneda1000();
-                    default -> null; // Si es número no válido
+                    default -> null;
                 };
             } catch (Exception ex) {
-                moneda = null; // Si es null, vacío o texto no numérico
+                moneda = null;
             }
 
             try {
@@ -155,7 +159,7 @@ public class MainInteractivo2 extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(MainInteractivo2::new);
+        SwingUtilities.invokeLater(MainInteractivo::new);
     }
 }
 
